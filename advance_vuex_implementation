@@ -1,0 +1,45 @@
+accounts.js
+
+import { getApi, postApi } from '@/http'
+
+const state = {
+  myBalance: {}
+}
+
+const mutations = {
+  SET_MY_BALANCE (state, myBalance) {
+    state.myBalance = myBalance
+  }
+}
+
+const getters = {
+  myBalance: state => state.myBalance
+}
+
+const actions = {
+  fetchMyBalance: ({ commit }) => {
+    return getApi(‘your api’).then(data => {
+      commit('SET_MY_BALANCE', data)
+    })
+  }
+}
+
+===================================
+
+template.vue
+
+#how to dispatch ? 
+
+methods: {
+  ...mapActions('accounts', ['fetchMyBalance'])
+}
+
+No payload: this.fetchMyBalance()
+Has Payload: this.fetchMyBalance(‘your payload’)
+We can also do .then and .catch: this.fetchBalance('Your Payload').then(response => {''}).catch((e) => {''})
+
+#how to get
+
+computed: {
+  ...mapGetters('accounts', ['myBalance'])
+}
