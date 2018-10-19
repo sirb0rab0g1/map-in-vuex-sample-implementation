@@ -43,3 +43,5 @@ We can also do .then and .catch: this.fetchBalance('Your Payload').then(response
 computed: {
   ...mapGetters('accounts', ['myBalance'])
 }
+
+then bind ex. {{ myBalance }}
